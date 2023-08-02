@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import AddEmp from "./components/AddEmp";
+import Editemp from "./components/Editemp";
+import ListTable from "./components/ListTable";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      {isAuthenticated && <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? <Navigate to="/home" /> : <Login handleLogin={handleLogin} />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            isAuthenticated ? <Home /> : <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/addemp"
+          element={
+            isAuthenticated ? <AddEmp /> : <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/editemp"
+          element={
+            isAuthenticated ? <Editemp /> : <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/listtable"
+          element={
+            isAuthenticated ? <ListTable /> : <Navigate to="/" />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

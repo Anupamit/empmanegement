@@ -1,0 +1,82 @@
+/* .buttonnav {
+    float: none;
+    display: block;
+    text-align: center;
+    position: fixed;
+    background-color: green;
+    color: white;
+    width: 8%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 16px;
+    margin: 0;
+    padding: 12px 20px;
+    right: 28px;
+    bottom: 495px;
+}
+.buttonnav2 {
+    display: block;
+    text-align: center;
+    position: fixed;
+    background-color: brown;
+    color: white;
+    width: 10%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 16px;
+    margin: 0;
+    padding: 12px 20px;
+    left: 28px;
+    bottom: 495px;
+}
+.header1 {
+    background-color: DodgerBlue;
+    padding: 3px;
+    text-align: center;
+}
+.subheader{
+    text-align: center;
+}
+.button2 {
+    background-color: coral;
+    color: white;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+} */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+}
+
+th {
+    background-color: DodgerBlue;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    /* border-radius: 8px; */
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.btn1{
+    /* border-radius: 1px; */
+    text-align: center;
+    float: center;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* tr:hover {background-color: coral;} */

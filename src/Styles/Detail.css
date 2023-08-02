@@ -1,0 +1,31 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+}
+
+th {
+    background-color: DodgerBlue;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    /* border-radius: 8px; */
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.btn1{
+    /* border-radius: 1px; */
+    text-align: center;
+    float: center;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* tr:hover {background-color: coral;} */
