@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/empmanegement/static/css/main.e5228508.css",
+    "main.js": "/empmanegement/static/js/main.88b26373.js",
+    "index.html": "/empmanegement/index.html",
+    "main.e5228508.css.map": "/empmanegement/static/css/main.e5228508.css.map",
+    "main.88b26373.js.map": "/empmanegement/static/js/main.88b26373.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5228508.css",
+    "static/js/main.88b26373.js"
+  ]
+}
