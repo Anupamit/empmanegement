@@ -8,8 +8,8 @@ function Navbar({ isAuthenticated, handleLogout }) {
 
   const isHomePage = location.pathname === "/home";
   const isListPage = location.pathname === "/listtable";
-  const isAddEmpPage = location.pathname === "/addemp";
-  const isEditEmpPage = location.pathname === "/editemp";
+  // const isAddEmpPage = location.pathname === "/addemp";
+  // const isEditEmpPage = location.pathname === "/editemp";
 
   const showBackButton = !isHomePage;
 
