@@ -43,7 +43,7 @@ const Login = ({ handleLogin }) => {
                 className="text"
               />
             </div>
-            <button className="btn-a">Login</button>
+            <button className="btnna">Login</button>
           </form>
         </div>
       </div>

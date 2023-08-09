@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/ListTable.css";
 
 const ListTable = () => {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("path/to/employees.json");
+        const response = await fetch("http://localhost:8000/employees");
         const data = await response.json();
         setUsers(data);
       } catch (error) {
@@ -18,13 +20,14 @@ const ListTable = () => {
   }, []);
 
   const navigate = useNavigate();
+
   const handleDelete = async (id, name) => {
     try {
       const response = await fetch("http://localhost:8000/employees");
       const data = await response.json();
       const updatedData = data.filter((user) => user.id !== id);
       await fetch("http://localhost:8000/employees", {
-        method: "PUT",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
@@ -32,18 +35,41 @@ const ListTable = () => {
       });
 
       alert(`${name} will be deleted permanently`);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
   };
 
-  const editUser = async (event, i, detailData) => {
-    navigate(`/editemp?id=${detailData.id}&name=${detailData.name}`);
+  const editUser = (id) => {
+    navigate(`/editemp?id=${id}`);
   };
 
+  const filteredUsers = useMemo(() => {
+    if (!searchTerm) {
+      return users;
+    }
+
+    return users.filter((user) => {
+      const searchLower = searchTerm.toLowerCase();
+      return (
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower) ||
+        user.mobno.toLowerCase().includes(searchLower)
+      );
+    });
+  }, [users, searchTerm]);
+
   return (
-    <div>
+    <div className="center-container">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name, email, or mobile"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -56,8 +82,8 @@ const ListTable = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((detail, i) => (
-            <tr key={i}>
+          {filteredUsers.map((detail) => (
+            <tr key={detail.id}>
               <td>
                 <button
                   className="btn1"
@@ -71,10 +97,7 @@ const ListTable = () => {
                 </button>
               </td>
               <td>
-                <button
-                  className="btn1"
-                  onClick={(event) => editUser(event, i, detail)}
-                >
+                <button className="btn1" onClick={() => editUser(detail.id)}>
                   <img
                     style={{ width: "25px", height: "20px" }}
                     src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-autorenew_90718.png"
@@ -85,7 +108,7 @@ const ListTable = () => {
               <td>{detail.id}</td>
               <td>{detail.name}</td>
               <td>{detail.email}</td>
-              <td>{detail.mobile}</td>
+              <td>{detail.mobno}</td>
             </tr>
           ))}
         </tbody>
