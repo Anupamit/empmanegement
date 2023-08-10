@@ -23,23 +23,17 @@ const ListTable = () => {
 
   const handleDelete = async (id, name) => {
     try {
-      const response = await fetch("http://localhost:8000/employees");
-      const data = await response.json();
-      const updatedData = data.filter((user) => user.id !== id);
-      await fetch("http://localhost:8000/employees", {
+      const updatedData = users.filter((user) => user.id !== id);
+      await fetch(`http://localhost:8000/employees/${id}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
       });
-
-      alert(`${name} will be deleted permanently`);
-      // window.location.reload();
+      setUsers(updatedData);
+      alert(`${name} has been deleted permanently`);
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
   };
+  
 
   const editUser = (id) => {
     navigate(`/editemp?id=${id}`);
@@ -49,7 +43,6 @@ const ListTable = () => {
     if (!searchTerm) {
       return users;
     }
-
     return users.filter((user) => {
       const searchLower = searchTerm.toLowerCase();
       return (
