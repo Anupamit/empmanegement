@@ -17,3 +17,20 @@
     color: white;
   }
   
+  @media (max-width: 768px) {
+    .pagination {
+      flex-direction: column; 
+      align-items: center;
+    }
+  
+    .pagination button {
+      margin: 5px; 
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .pagination {
+      margin-top: 40px; 
+    }
+  }
+  

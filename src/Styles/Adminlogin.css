@@ -1,16 +1,21 @@
 body {
   margin: 0;
   padding: 0;
+  background-image: url('https://img.freepik.com/premium-vector/network-connection-background-abstract-style_23-2148875738.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .login {
   width: 340px;
   height: 340px;
-  background: #0c0f0a;
+  background: rgba(12, 15, 10, 0.8);
   margin: auto;
   margin-top: 180px;
   padding: 30px;
   border-top: 4px solid #203a6d;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .login h5 {
