@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/ListTable.css";
+import Pagination from "./Pagination";
 
 const ListTable = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +36,6 @@ const ListTable = () => {
       console.error("Error deleting employee:", error);
     }
   };
-  
 
   const editUser = (id) => {
     navigate(`/editemp?id=${id}`);
@@ -43,15 +45,22 @@ const ListTable = () => {
     if (!searchTerm) {
       return users;
     }
-    return users.filter((user) => {
-      const searchLower = searchTerm.toLowerCase();
-      return (
+    const searchLower = searchTerm.toLowerCase();
+    return users.filter(
+      (user) =>
         user.name.toLowerCase().includes(searchLower) ||
         user.email.toLowerCase().includes(searchLower) ||
         user.mobno.toLowerCase().includes(searchLower)
-      );
-    });
+    );
   }, [users, searchTerm]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   return (
     <div className="center-container">
@@ -75,7 +84,7 @@ const ListTable = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((detail) => (
+          {currentUsers.map((detail) => (
             <tr key={detail.id}>
               <td>
                 <button
@@ -106,6 +115,12 @@ const ListTable = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        currentPage={currentPage}
+        usersPerPage={usersPerPage}
+        totalUsers={filteredUsers.length}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

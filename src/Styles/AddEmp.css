@@ -10,7 +10,7 @@ body{
 	margin: auto;
 	margin-top: 100px;
 	padding: 30px;
-	border-top: 4px solid #1293de;
+	border-top: 4px solid #203a6d;
 }
 
 .login h5{
@@ -27,7 +27,7 @@ body{
 .text{
 	width: 94%;
 	color: #fff;
-	border: 1px solid #1293de;
+	border: 1px solid #203a6d;
 	background: #212121;
 	font-size: 14px;
 	padding: 14px 10px;
