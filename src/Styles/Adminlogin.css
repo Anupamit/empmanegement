@@ -1,10 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('https://img.freepik.com/premium-vector/network-connection-background-abstract-style_23-2148875738.jpg'); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+ 
 }
 
 .login {
